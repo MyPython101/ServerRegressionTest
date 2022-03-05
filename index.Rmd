@@ -307,5 +307,5 @@ print(y)
 ## Technology
 
 - markdown file
-- using R to render the file
-- host at GitHub/trucdev/
+- using R Studio to create presentation
+- file host at [Simple Test ](https://github.com/jackyhuynh/complete-solutions-for-php-testing-using-simpletest)
