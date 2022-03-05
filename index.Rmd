@@ -1,6 +1,6 @@
 ---
-title: "Simple Test for PHP"
-author: "Truc Huynh & Mohammad "
+title: "Simple Test for PHP (Unit Testing)"
+author: "Truc Huynh & Mohammed Alswairki"
 date: "3/5/2022"
 output:
   slidy_presentation: default
@@ -10,24 +10,24 @@ output:
 ## Keyword(*)
 - JUnit: is a regression unit testing framework for Java programming languages
 - unit test: is a testing method where the smallest testable parts of a software are tested
-- xUnit: xUnit.net is a free, open source, community-focused unit testing tool for the .NET Framework(1)
+- xUnit: xUnit.net is a free, open source, community-focused unit testing tool for the .NET Framework (1)
 - PHP: a server side scripting languages
 - Eclipse IDE: Integrated development environment for Java development
-- test case: is a document, which has a set of test data, preconditions, expected results and post-conditions, developed for a particular test scenario in order to verify compliance against a specific requirement(1)
-- Test suite: grouping test cases into a test script that can run every test for the application(1)
-- Test Driven Development (TDD): test cases for each functionality are created and tested first and if the test fails then the new code is written in order to pass the test and making code simple and bug-free(1)
+- test case: is a document, which has a set of test data, preconditions, expected results and post-conditions, developed for a particular test scenario in order to verify compliance against a specific requirement (1)
+- Test suite: grouping test cases into a test script that can run every test for the application (1)
+- Test Driven Development (TDD): test cases for each functionality are created and tested first and if the test fails then the new code is written in order to pass the test and making code simple and bug-free (1)
 
 ## Introduction to SimpleTest
 
 - SimpleTest is a regression testing framework that built around test cases
 - Test PHP only (not Python, not anything else)
-- Completed PHP developer test solution ( unit test, automation test, GUI test, mock object, TDD(*)...)
+- Completed PHP developer test solution ( unit test, automation test, GUI test, mock object, TDD (*)...)
 
 ## SimpleTest Pre-requirement
 
-- Understand of Testing (in this case Unit Testing)
-- Understand of PHP Web development language
-- Know how to program (Design for developer)
+- Understand of testing methods(in this case Unit Testing)
+- Understand of PHP web development language
+- Know how to program (design for developer and tester)
 
 ## SimpleTest Features
 
@@ -43,13 +43,13 @@ output:
 ## Download Simple Test for PHP
 
 - Download from SourceForge.net
-- Download as a plugin  for [Eclipse IDE (*)](https://sourceforge.net/projects/simpletest/files/eclipse%20plugin/) also from SourceForge.net
+- Download as a plugin  for [Eclipse IDE (*) ](https://sourceforge.net/projects/simpletest/files/eclipse%20plugin/) also from SourceForge.net
 - _**Retrieved from (1)**_
 
 ## How to Use Simple Test for PHP
 
 - Use as PHP script, develop along with the source code
-- Use Simple Test to develop test case, test suite (*)and many more tests
+- Use Simple Test to develop test case, test suite (*)
 - _**Retrieved from (1)**_
 
 
@@ -124,40 +124,31 @@ dump($var)	            // Does a formatted print_r() for quick and dirty debuggi
 
 ```
 
-## Simple Use Case (Unit Test):
+## Simple Use Case (Unit Test)
 
 - Simple test case that check a file has been created by the Writer object
 ```php
 <?php
-// required library
 // The "autorun.php" file does more than just include the SimpleTest files, it also runs our test for us
 require_once('simpletest/autorun.php');
 require_once('../classes/writer.php');
-
 // use extends UnitTestCase to implement simple test
 class FileTestCase extends UnitTestCase {
-    
-    // Constructor
     function FileTestCase() {
-        $this->UnitTestCase('File test');}
-        
+        $this->UnitTestCase('File test');}    // Constructor
     //run just before each and every test method
     function setUp() {
         @unlink('../temp/test.txt');}
-  
     //run just before each and every test method
     function tearDown() {
         @unlink('../temp/test.txt');}
-    
     // When a test case runs, it will search for any method that starts with the string "test" and execute that method.
     function testCreation() {
         $writer = &new FileWriter('../temp/test.txt');
         $writer->write('Hello');
         // using assertTrue function validate if the test.txt is exit, if true print 'File created'
         $this->assertTrue(file_exists('../temp/test.txt'), 'File created');
-    }
-}
-?>
+}}?>
 ```
 
 ## Group Test
@@ -225,7 +216,7 @@ class AllTests extends TestSuite {
 - Scenario:
   - Test database connection, simulate database being down without creating new real broken database(s)
 - Step
-  - create DatabaseConnection class:
+  - create DatabaseConnection class store in script 'database_connection.php':
 ```php
 <?php
 // database_connection.php
@@ -239,22 +230,23 @@ class DatabaseConnection {
 ?>
 ```
 
-## Use Case 2 (Mock Objects) (cont)
+## Use Case 2 (Mock Objects) (cont.)
 
-- Create mock version of DatabaseConnection:
-  - include the mock object library
-  - run the generator
+- include the mock object library
+- run the generator to create mock version of DatabaseConnection
 ```php
 <?php
-
 require_once('simpletest/unit_tester.php');
 require_once('simpletest/mock_objects.php');    //include the mock object library
 require_once('database_connection.php');
 
-Mock::generate('DatabaseConnection');           // run the generator
+Mock::generate('DatabaseConnection');           // run the generator to create a mock version of DatabaseConnection
 ?>
 ```
-This generates a clone class called MockDatabaseConnection. We can now create instances of the new class within our test case
+
+- This generates a clone class called MockDatabaseConnection. 
+- We can now create instances of the new class within our test case
+
 ```php
 <?php
 class MyTestCase extends UnitTestCase {
