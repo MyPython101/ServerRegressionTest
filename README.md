@@ -1,7 +1,7 @@
 # Simple Test for PHP
 
 ---
-author: "Truc Huynh & Mohammed Alswairki"
+
 
 
 ## [Online Presentation](https://jackyhuynh.github.io/completed-testing-solutions-for-php-using-simpletest/)
