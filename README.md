@@ -1,6 +1,15 @@
 # Simple Test for PHP
 
-## Keyword(*)
+---
+title: "Simple Test for PHP (Unit Testing)"
+author: "Truc Huynh & Mohammed Alswairki"
+date: "3/5/2022"
+output:
+  slidy_presentation: default
+---
+
+## Keyword (*)
+
 - JUnit: is a regression unit testing framework for Java programming languages
 - unit test: is a testing method where the smallest testable parts of a software are tested
 - xUnit: xUnit.net is a free, open source, community-focused unit testing tool for the .NET Framework (1)
@@ -80,6 +89,228 @@
   - extends TestSuite: test suites
   - extends UnitTestCase: unit test case
   - Mock : generate mock object
+
+
+## Unit Test cases
+- The simplest type of all test case is the unit test
+- implement SimpleTest framework by extend the UnitTestCase. 
+- This class of test case includes standard tests for equality, references and pattern matching
+
+## UnitTestCase Class
+Some function of UnitTestCase class, the default for SimpleTest
+```php
+assertTrue($x)	                // Fail if $x is false
+assertFalse($x)                 // Fail if $x is true
+assertNull($x)                  // Fail if $x is set
+assertNotNull($x)               // Fail if $x not set
+assertIsA($x, $t)               // Fail if $x is not the class or type $t
+assertNotA($x, $t)	            // Fail if $x is of the class or type $t
+assertEqual($x, $y)	            // Fail if $x == $y is false
+assertNotEqual($x, $y)	        // Fail if $x == $y is true
+assertWithinMargin($x, $y, $m)  // Fail if abs($x - $y) < $m is false
+assertOutsideMargin($x, $y, $m)	// Fail if abs($x - $y) < $m is true
+// see more at http://simpletest.sourceforge.net/en/unit_test_documentation.html
+
+```
+
+## Convenience Methods (UnitTestCase Class)
+- The test cases also have some convenience methods for debugging code or extending the suite...
+```php
+setUp()	                // Runs this before each test method
+tearDown()	            // Runs this after each test method
+pass()	                // Sends a test pass
+fail()	                // Sends a test failure
+error()	                // Sends an exception event
+signal($type, $payload) // Sends a user defined message to the test reporter
+dump($var)	            // Does a formatted print_r() for quick and dirty debugging
+
+```
+
+## Simple Use Case (Unit Test)
+
+- Simple test case that check a file has been created by the Writer object
+```php
+<?php
+// The "autorun.php" file does more than just include the SimpleTest files, it also runs our test for us
+require_once('simpletest/autorun.php');
+require_once('../classes/writer.php');
+// use extends UnitTestCase to implement simple test
+class FileTestCase extends UnitTestCase {
+    function FileTestCase() {
+        $this->UnitTestCase('File test');}    // Constructor
+    //run just before each and every test method
+    function setUp() {
+        @unlink('../temp/test.txt');}
+    //run just before each and every test method
+    function tearDown() {
+        @unlink('../temp/test.txt');}
+    // When a test case runs, it will search for any method that starts with the string "test" and execute that method.
+    function testCreation() {
+        $writer = &new FileWriter('../temp/test.txt');
+        $writer->write('Hello');
+        // using assertTrue function validate if the test.txt is exit, if true print 'File created'
+        $this->assertTrue(file_exists('../temp/test.txt'), 'File created');
+}}?>
+```
+
+## Group Test
+
+- Group test cases to create a test suites
+- Template of test suite, 'log_test.php' content
+```php
+
+<?php
+// when list as abstract MyFileTestCase will not execute
+abstract class MyFileTestCase extends UnitTestCase { 
+ //Do sometest
+ }
+
+class FileTester extends MyFileTestCase { 
+ //Do sometest
+ }
+
+class SocketTester extends UnitTestCase { 
+ //Do sometest
+ }
+?>
+```
+
+## Group Test (cont.)
+
+- Script 2: Test Suite 'all-test.php'
+```php
+<?php
+require_once('simpletest/autorun.php');
+
+// Note that allTest extends TestSuite
+class AllTests extends TestSuite {
+    function AllTests() {
+        $this->TestSuite('All tests');
+        $this->addFile('log_test.php');
+    }
+}
+?>
+```
+
+## What is Mock Objects
+
+- Technique for improving the design of code within Test-Driven Development
+- Simulated Object that simulate the behavior of a testable unit
+- Mock objects help isolate the component being tested from the components it depends on (2)
+
+## Use case 1 (Mock Objects)
+
+- Pre condition:
+  - We test a web app
+  - Our app make HTTP requests to an external services
+  - External services always perform as expected but what if the services fail?
+  - Temporary change in the behavior of these external services can cause immediate failures within our test suite.
+- Benefit of using Mock Objects:
+  - We test our app in a controlled environment
+  - Replacing actual request with a mock object (simulated object)
+  - Successfully simulate external services outage and design a response (in a predicted way)
+
+## Use Case 2 (Mock Objects)
+
+- Technology
+  - PHP
+  - SimpleTest
+- Scenario:
+  - Test database connection, simulate database being down without creating new real broken database(s)
+- Step
+  - Create DatabaseConnection class store in script 'database_connection.php':
+
+```php
+<?php
+// database_connection.php
+class DatabaseConnection {
+    function DatabaseConnection() { // do some}
+    
+    function query() { // do some query}
+    
+    function selectQuery() { // do some searches}
+}
+?>
+```
+
+## Use Case 2 (Mock Objects) (cont.)
+
+- run the generator to create mock version of DatabaseConnection
+
+```php
+<?php
+require_once('simpletest/unit_tester.php');
+require_once('simpletest/mock_objects.php');    //include the mock object library
+require_once('database_connection.php');
+
+Mock::generate('DatabaseConnection');           // run the generator to create a mock version of DatabaseConnection
+?>
+```
+
+- This generates a clone class called MockDatabaseConnection. 
+- We can now create instances of the new class within our test case
+
+```php
+<?php
+class MyTestCase extends UnitTestCase {
+    function testSomething() {
+        $connection = &new MockDatabaseConnection();
+    }
+}
+?>
+```
+
+## Python Unit Test
+
+- The unittest unit testing framework was originally inspired by JUnit (*) and has a similar flavor as major unit testing frameworks in other languages
+- It supports test automation 
+- Sharing of setup and shutdown code for tests
+- Aggregation of tests into collections, and independence of the tests from the reporting framework(4)
+
+## Python Mock Object
+
+- Python with json
+
+```python
+import json
+
+# a Python object (dict):
+x = {  "name": "John","age": 30,"city": "New York"}
+
+# convert into JSON:
+y = json.dumps(x)
+
+# the result is a JSON string:
+print(y)
+```
+
+## Python Mock Object (cont.)
+
+- Using Python Mock Object of unittest package
+
+```bash
+>>> from unittest.mock import Mock
+>>> import json
+>>> json = Mock()
+>>> json.dumps()
+<Mock name='mock.dumps()' id='4392249776'>
+```
+- Unlike the real dumps(), this mocked method requires no arguments. In fact, it will accept any arguments that you pass to it.
+- The return value of dumps() is also a Mock object. The capability of Mock to recursively define other mocks allows for you to use mocks in complex situations.
+
+## Reference
+
+- [Simple Test for PHP](http://simpletest.sourceforge.net/en/start-testing.html) (1)
+- [mock object](https://searchsoftwarequality.techtarget.com/definition/mock-object) (2)
+- [Understanding the Python Mock Object Library](https://realpython.com/python-mock-library/) (3)
+- [Python Unit test](https://docs.python.org/3/library/unittest.html) (4)
+- [PHP Introduction](https://www.w3schools.com/PHP/php_intro.asp#:~:text=What%20is%20PHP%3F%201%20PHP%20is%20an%20acronym,4%20PHP%20is%20free%20to%20download%20and%20use) (5)
+
+## Technology
+
+- markdown file
+- using R Studio to create presentation
+- file host at [Simple Test ](https://github.com/jackyhuynh/complete-solutions-for-php-testing-using-simpletest)
 
 
 ## Technology
