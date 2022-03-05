@@ -1,9 +1,5 @@
 # Simple Test for PHP
 
----
-
-
-
 ## [Online Presentation](https://jackyhuynh.github.io/completed-testing-solutions-for-php-using-simpletest/)
 
 ## Keyword (*)
