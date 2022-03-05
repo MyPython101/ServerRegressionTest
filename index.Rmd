@@ -4,10 +4,10 @@ author: "Truc Huynh & Mohammed Alswairki"
 date: "3/5/2022"
 output:
   slidy_presentation: default
-  ioslides_presentation: default
 ---
 
-## Keyword(*)
+## Keyword (*)
+
 - JUnit: is a regression unit testing framework for Java programming languages
 - unit test: is a testing method where the smallest testable parts of a software are tested
 - xUnit: xUnit.net is a free, open source, community-focused unit testing tool for the .NET Framework (1)
@@ -89,12 +89,12 @@ output:
   - Mock : generate mock object
 
 
-## Unit Test cases:
+## Unit Test cases
 - The simplest type of all test case is the unit test
 - implement SimpleTest framework by extend the UnitTestCase. 
 - This class of test case includes standard tests for equality, references and pattern matching
 
-## UnitTestCase Class:
+## UnitTestCase Class
 Some function of UnitTestCase class, the default for SimpleTest
 ```php
 assertTrue($x)	                // Fail if $x is false
@@ -216,7 +216,8 @@ class AllTests extends TestSuite {
 - Scenario:
   - Test database connection, simulate database being down without creating new real broken database(s)
 - Step
-  - create DatabaseConnection class store in script 'database_connection.php':
+  - Create DatabaseConnection class store in script 'database_connection.php':
+
 ```php
 <?php
 // database_connection.php
@@ -232,8 +233,8 @@ class DatabaseConnection {
 
 ## Use Case 2 (Mock Objects) (cont.)
 
-- include the mock object library
 - run the generator to create mock version of DatabaseConnection
+
 ```php
 <?php
 require_once('simpletest/unit_tester.php');
@@ -257,14 +258,17 @@ class MyTestCase extends UnitTestCase {
 ?>
 ```
 
-## Python Unit test: 
+## Python Unit Test
+
 - The unittest unit testing framework was originally inspired by JUnit (*) and has a similar flavor as major unit testing frameworks in other languages
 - It supports test automation 
 - Sharing of setup and shutdown code for tests
 - Aggregation of tests into collections, and independence of the tests from the reporting framework(4)
 
-## Python Mock Object:
+## Python Mock Object
+
 - Python with json
+
 ```python
 import json
 
@@ -277,7 +281,11 @@ y = json.dumps(x)
 # the result is a JSON string:
 print(y)
 ```
+
+## Python Mock Object (cont.)
+
 - Using Python Mock Object of unittest package
+
 ```bash
 >>> from unittest.mock import Mock
 >>> import json
@@ -288,14 +296,16 @@ print(y)
 - Unlike the real dumps(), this mocked method requires no arguments. In fact, it will accept any arguments that you pass to it.
 - The return value of dumps() is also a Mock object. The capability of Mock to recursively define other mocks allows for you to use mocks in complex situations.
 
-## Reference:
+## Reference
+
 - [Simple Test for PHP](http://simpletest.sourceforge.net/en/start-testing.html) (1)
 - [mock object](https://searchsoftwarequality.techtarget.com/definition/mock-object) (2)
 - [Understanding the Python Mock Object Library](https://realpython.com/python-mock-library/) (3)
 - [Python Unit test](https://docs.python.org/3/library/unittest.html) (4)
 - [PHP Introduction](https://www.w3schools.com/PHP/php_intro.asp#:~:text=What%20is%20PHP%3F%201%20PHP%20is%20an%20acronym,4%20PHP%20is%20free%20to%20download%20and%20use) (5)
 
-## Technology:
+## Technology
+
 - markdown file
 - using R to render the file
 - host at GitHub/trucdev/
