@@ -4,6 +4,8 @@
 author: "Truc Huynh & Mohammed Alswairki"
 ---
 
+## [Online Presentation](https://jackyhuynh.github.io/completed-testing-solutions-for-php-using-simpletest/)
+
 ## Keyword (*)
 
 - JUnit: is a regression unit testing framework for Java programming languages
