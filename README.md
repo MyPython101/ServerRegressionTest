@@ -1,11 +1,7 @@
 # Simple Test for PHP
 
 ---
-title: "Simple Test for PHP (Unit Testing)"
 author: "Truc Huynh & Mohammed Alswairki"
-date: "3/5/2022"
-output:
-  slidy_presentation: default
 ---
 
 ## Keyword (*)
