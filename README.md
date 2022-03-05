@@ -1,13 +1,86 @@
-# TEMPLATE for R Studio
+# Simple Test for PHP
 
-## Introduction
-The purpose is to create a consisten in documatation my work. Simply introduce the project that specically built with R Studio. 
-I beleve the simplier the Readme file, the easier to read
-- You can also keep this private and organize this GitHub as a private libary for yourself.
-<img src="https://github.com/jackyhuynh/template-git-jupiter-notebook-md/blob/main/images/instruction.JPG">
+## Keyword(*)
+- JUnit: is a regression unit testing framework for Java programming languages
+- unit test: is a testing method where the smallest testable parts of a software are tested
+- xUnit: xUnit.net is a free, open source, community-focused unit testing tool for the .NET Framework (1)
+- PHP: a server side scripting languages
+- Eclipse IDE: Integrated development environment for Java development
+- test case: is a document, which has a set of test data, preconditions, expected results and post-conditions, developed for a particular test scenario in order to verify compliance against a specific requirement (1)
+- Test suite: grouping test cases into a test script that can run every test for the application (1)
+- Test Driven Development (TDD): test cases for each functionality are created and tested first and if the test fails then the new code is written in order to pass the test and making code simple and bug-free (1)
 
-## Documents/Research Paper
-Link your research paper <a href="https://github.com/jackyhuynh/template-git-jupiter-notebook-md/blob/main/documents/resarch-sample.pdf">here</a> if you need
+## Introduction to SimpleTest
+
+- SimpleTest is a regression testing framework that built around test cases
+- Test PHP only (not Python, not anything else)
+- Completed PHP developer test solution ( unit test, automation test, GUI test, mock object, TDD (*)...)
+
+## SimpleTest Pre-requirement
+
+- Understand of testing methods(in this case Unit Testing)
+- Understand of PHP web development language
+- Know how to program (design for developer and tester)
+
+## SimpleTest Features
+
+- Easy to use and extend
+- Automation testing (schedule scripts)
+- Completed PHP developer test solution
+- xUnit (*) style test cases
+- Support mock objects(*)
+- Built in web browser (no need for selenium)
+- Can Navigate websites, fill in form, authentication, web tester
+- _**Retrieved from (1)**_
+
+## Download Simple Test for PHP
+
+- Download from SourceForge.net
+- Download as a plugin  for [Eclipse IDE (*) ](https://sourceforge.net/projects/simpletest/files/eclipse%20plugin/) also from SourceForge.net
+- _**Retrieved from (1)**_
+
+## How to Use Simple Test for PHP
+
+- Use as PHP script, develop along with the source code
+- Use Simple Test to develop test case, test suite (*)
+- _**Retrieved from (1)**_
+
+
+## What is Unit Testing
+
+- Unit Testing: Not only test if a unit (collection of statements: statements, function, block, object) is working but what happen when it is not working.
+- Usually perform by developer
+
+
+## What is PHP
+
+- PHP is an acronym for "PHP: Hypertext Pre-processor"
+- PHP is a widely-used, open source scripting language
+- PHP scripts are executed on the server
+- PHP is free to download and use
+- _**Retrieved from (5)**_
+
+## What is PHP files
+
+- PHP files can contain text, HTML, CSS, JavaScript, and PHP code
+- PHP code is executed on the server, and the result is returned to the browser as plain HTML
+- PHP files have extension ".php"
+- _**Retrieved from (5)**_
+
+## SimpleTest classes
+
+- use _**extend**_ keyword to implement any class in SimpleTest framework
+- Most use package:
+  - 'simpletest/autorun.php': include for all kind of simple test
+  - 'simpletest/web_tester.php': web test (GUI testing)
+  - 'simpletest/mock_objects.php': generate mock object
+  
+  
+- Most use class/interface:
+  - extends TestSuite: test suites
+  - extends UnitTestCase: unit test case
+  - Mock : generate mock object
+
 
 ## Technology
 List of technology
