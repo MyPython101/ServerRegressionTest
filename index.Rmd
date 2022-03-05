@@ -19,11 +19,13 @@ output:
 
 ## Introduction to SimpleTest
 
-SimpleTest (Unit Testing for PHP) is a regression testing framework that built around test cases
+- SimpleTest is a regression testing framework that built around test cases
+- Test PHP only (not Python, not anything else)
+- Completed PHP developer test solution ( unit test, automation test, GUI test, mock object, TDD(*)...)
 
 ## SimpleTest Pre-requirement
 
-- Understand of Unit Testing 
+- Understand of Testing (in this case Unit Testing)
 - Understand of PHP Web development language
 - Know how to program (Design for developer)
 
@@ -31,9 +33,9 @@ SimpleTest (Unit Testing for PHP) is a regression testing framework that built a
 
 - Easy to use and extend
 - Automation testing (schedule scripts)
-- Designed to Complete PHP developer test solution (test case, test suite, automation)
+- Completed PHP developer test solution
 - xUnit (*) style test cases
-- Support Mock objects
+- Support mock objects(*)
 - Built in web browser (no need for selenium)
 - Can Navigate websites, fill in form, authentication, web tester
 - _**Retrieved from (1)**_
@@ -46,8 +48,8 @@ SimpleTest (Unit Testing for PHP) is a regression testing framework that built a
 
 ## How to Use Simple Test for PHP
 
-- Use as PHP script, develop along with source code
-- Use Simple Test to develop test case and test suite (*)
+- Use as PHP script, develop along with the source code
+- Use Simple Test to develop test case, test suite (*)and many more tests
 - _**Retrieved from (1)**_
 
 
@@ -59,7 +61,7 @@ SimpleTest (Unit Testing for PHP) is a regression testing framework that built a
 
 ## What is PHP
 
-- PHP is an acronym for "PHP: Hypertext Preprocessor"
+- PHP is an acronym for "PHP: Hypertext Pre-processor"
 - PHP is a widely-used, open source scripting language
 - PHP scripts are executed on the server
 - PHP is free to download and use
