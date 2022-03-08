@@ -1,0 +1,731 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+  ignorenonframetext,
+]{beamer}
+\title{Simple Test for PHP (Unit Testing)}
+\author{Truc Huynh \& Mohammed Alswairki}
+\date{3/5/2022}
+
+\usepackage{pgfpages}
+\setbeamertemplate{caption}[numbered]
+\setbeamertemplate{caption label separator}{: }
+\setbeamercolor{caption name}{fg=normal text.fg}
+\beamertemplatenavigationsymbolsempty
+% Prevent slide breaks in the middle of a paragraph
+\widowpenalties 1 10000
+\raggedbottom
+\setbeamertemplate{part page}{
+  \centering
+  \begin{beamercolorbox}[sep=16pt,center]{part title}
+    \usebeamerfont{part title}\insertpart\par
+  \end{beamercolorbox}
+}
+\setbeamertemplate{section page}{
+  \centering
+  \begin{beamercolorbox}[sep=12pt,center]{part title}
+    \usebeamerfont{section title}\insertsection\par
+  \end{beamercolorbox}
+}
+\setbeamertemplate{subsection page}{
+  \centering
+  \begin{beamercolorbox}[sep=8pt,center]{part title}
+    \usebeamerfont{subsection title}\insertsubsection\par
+  \end{beamercolorbox}
+}
+\AtBeginPart{
+  \frame{\partpage}
+}
+\AtBeginSection{
+  \ifbibliography
+  \else
+    \frame{\sectionpage}
+  \fi
+}
+\AtBeginSubsection{
+  \frame{\subsectionpage}
+}
+\usepackage{amsmath,amssymb}
+\usepackage{lmodern}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\hypersetup{
+  pdftitle={Simple Test for PHP (Unit Testing)},
+  pdfauthor={Truc Huynh \& Mohammed Alswairki},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+\urlstyle{same} % disable monospaced font for URLs
+\newif\ifbibliography
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+
+\begin{document}
+\frame{\titlepage}
+
+\begin{frame}{Keyword (*)}
+\protect\hypertarget{keyword}{}
+\begin{itemize}
+\tightlist
+\item
+  JUnit: is a regression unit testing framework for Java programming
+  languages
+\item
+  unit test: is a testing method where the smallest testable parts of a
+  software are tested
+\item
+  xUnit: xUnit.net is a free, open source, community-focused unit
+  testing tool for the .NET Framework (1)
+\item
+  PHP: a server side scripting languages
+\item
+  Eclipse IDE: Integrated development environment for Java development
+\item
+  test case: is a document, which has a set of test data, preconditions,
+  expected results and post-conditions, developed for a particular test
+  scenario in order to verify compliance against a specific requirement
+  (1)
+\item
+  Test suite: grouping test cases into a test script that can run every
+  test for the application (1)
+\item
+  Test Driven Development (TDD): test cases for each functionality are
+  created and tested first and if the test fails then the new code is
+  written in order to pass the test and making code simple and bug-free
+  (1)
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Introduction to SimpleTest}
+\protect\hypertarget{introduction-to-simpletest}{}
+\begin{itemize}
+\tightlist
+\item
+  SimpleTest is a regression testing framework that built around test
+  cases
+\item
+  Test PHP only (not Python, not anything else)
+\item
+  Completed PHP developer test solution ( unit test, automation test,
+  GUI test, mock object, TDD (*)\ldots)
+\end{itemize}
+\end{frame}
+
+\begin{frame}{SimpleTest Pre-requirement}
+\protect\hypertarget{simpletest-pre-requirement}{}
+\begin{itemize}
+\tightlist
+\item
+  Understand of testing methods(in this case Unit Testing)
+\item
+  Understand of PHP web development language
+\item
+  Know how to program (design for developer and tester)
+\end{itemize}
+\end{frame}
+
+\begin{frame}{SimpleTest Features}
+\protect\hypertarget{simpletest-features}{}
+\begin{itemize}
+\tightlist
+\item
+  Easy to use and extend
+\item
+  Automation testing (schedule scripts)
+\item
+  Completed PHP developer test solution
+\item
+  xUnit (*) style test cases
+\item
+  Support mock objects(*)
+\item
+  Built in web browser (no need for selenium)
+\item
+  Can Navigate websites, fill in form, authentication, web tester
+\item
+  \emph{\textbf{Retrieved from (1)}}
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Download Simple Test for PHP}
+\protect\hypertarget{download-simple-test-for-php}{}
+\begin{itemize}
+\tightlist
+\item
+  Download from SourceForge.net
+\item
+  Download as a plugin for
+  \href{https://sourceforge.net/projects/simpletest/files/eclipse\%20plugin/}{Eclipse
+  IDE (*)} also from SourceForge.net
+\item
+  \emph{\textbf{Retrieved from (1)}}
+\end{itemize}
+\end{frame}
+
+\begin{frame}{How to Use Simple Test for PHP}
+\protect\hypertarget{how-to-use-simple-test-for-php}{}
+\begin{itemize}
+\tightlist
+\item
+  Use as PHP script, develop along with the source code
+\item
+  Use Simple Test to develop test case, test suite (*)
+\item
+  \emph{\textbf{Retrieved from (1)}}
+\end{itemize}
+\end{frame}
+
+\begin{frame}{What is Unit Testing}
+\protect\hypertarget{what-is-unit-testing}{}
+\begin{itemize}
+\tightlist
+\item
+  Unit Testing: Not only test if a unit (collection of statements:
+  statements, function, block, object) is working but what happen when
+  it is not working.
+\item
+  Usually perform by developer
+\end{itemize}
+\end{frame}
+
+\begin{frame}{What is PHP}
+\protect\hypertarget{what-is-php}{}
+\begin{itemize}
+\tightlist
+\item
+  PHP is an acronym for ``PHP: Hypertext Pre-processor''
+\item
+  PHP is a widely-used, open source scripting language
+\item
+  PHP scripts are executed on the server
+\item
+  PHP is free to download and use
+\item
+  \emph{\textbf{Retrieved from (5)}}
+\end{itemize}
+\end{frame}
+
+\begin{frame}{What is PHP files}
+\protect\hypertarget{what-is-php-files}{}
+\begin{itemize}
+\tightlist
+\item
+  PHP files can contain text, HTML, CSS, JavaScript, and PHP code
+\item
+  PHP code is executed on the server, and the result is returned to the
+  browser as plain HTML
+\item
+  PHP files have extension ``.php''
+\item
+  \emph{\textbf{Retrieved from (5)}}
+\end{itemize}
+\end{frame}
+
+\begin{frame}{SimpleTest classes}
+\protect\hypertarget{simpletest-classes}{}
+\begin{itemize}
+\tightlist
+\item
+  use \emph{\textbf{extend}} keyword to implement any class in
+  SimpleTest framework
+\item
+  Most use package:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    `simpletest/autorun.php': include for all kind of simple test
+  \item
+    `simpletest/web\_tester.php': web test (GUI testing)
+  \item
+    `simpletest/mock\_objects.php': generate mock object
+  \end{itemize}
+\item
+  Most use class/interface:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    extends TestSuite: test suites
+  \item
+    extends UnitTestCase: unit test case
+  \item
+    Mock : generate mock object
+  \end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Unit Test cases}
+\protect\hypertarget{unit-test-cases}{}
+\begin{itemize}
+\tightlist
+\item
+  The simplest type of all test case is the unit test
+\item
+  implement SimpleTest framework by extend the UnitTestCase.
+\item
+  This class of test case includes standard tests for equality,
+  references and pattern matching
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{UnitTestCase Class}
+\protect\hypertarget{unittestcase-class}{}
+Some function of UnitTestCase class, the default for SimpleTest
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{assertTrue(}\VariableTok{$x}\NormalTok{)                  }\CommentTok{// Fail if $x is false}
+\NormalTok{assertFalse(}\VariableTok{$x}\NormalTok{)                 }\CommentTok{// Fail if $x is true}
+\NormalTok{assertNull(}\VariableTok{$x}\NormalTok{)                  }\CommentTok{// Fail if $x is set}
+\NormalTok{assertNotNull(}\VariableTok{$x}\NormalTok{)               }\CommentTok{// Fail if $x not set}
+\NormalTok{assertIsA(}\VariableTok{$x}\OtherTok{,} \VariableTok{$t}\NormalTok{)               }\CommentTok{// Fail if $x is not the class or type $t}
+\NormalTok{assertNotA(}\VariableTok{$x}\OtherTok{,} \VariableTok{$t}\NormalTok{)              }\CommentTok{// Fail if $x is of the class or type $t}
+\NormalTok{assertEqual(}\VariableTok{$x}\OtherTok{,} \VariableTok{$y}\NormalTok{)             }\CommentTok{// Fail if $x == $y is false}
+\NormalTok{assertNotEqual(}\VariableTok{$x}\OtherTok{,} \VariableTok{$y}\NormalTok{)          }\CommentTok{// Fail if $x == $y is true}
+\NormalTok{assertWithinMargin(}\VariableTok{$x}\OtherTok{,} \VariableTok{$y}\OtherTok{,} \VariableTok{$m}\NormalTok{)  }\CommentTok{// Fail if abs($x {-} $y) \textless{} $m is false}
+\NormalTok{assertOutsideMargin(}\VariableTok{$x}\OtherTok{,} \VariableTok{$y}\OtherTok{,} \VariableTok{$m}\NormalTok{) }\CommentTok{// Fail if abs($x {-} $y) \textless{} $m is true}
+\CommentTok{// see more at http://simpletest.sourceforge.net/en/unit\_test\_documentation.html}
+\end{Highlighting}
+\end{Shaded}
+\end{frame}
+
+\begin{frame}[fragile]{Convenience Methods (UnitTestCase Class)}
+\protect\hypertarget{convenience-methods-unittestcase-class}{}
+\begin{itemize}
+\tightlist
+\item
+  The test cases also have some convenience methods for debugging code
+  or extending the suite\ldots{}
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{setUp()                 }\CommentTok{// Runs this before each test method}
+\NormalTok{tearDown()              }\CommentTok{// Runs this after each test method}
+\NormalTok{pass()                  }\CommentTok{// Sends a test pass}
+\NormalTok{fail()                  }\CommentTok{// Sends a test failure}
+\BuiltInTok{error}\NormalTok{()                 }\CommentTok{// Sends an exception event}
+\NormalTok{signal(}\VariableTok{$type}\OtherTok{,} \VariableTok{$payload}\NormalTok{) }\CommentTok{// Sends a user defined message to the test reporter}
+\NormalTok{dump(}\VariableTok{$var}\NormalTok{)              }\CommentTok{// Does a formatted print\_r() for quick and dirty debugging}
+\end{Highlighting}
+\end{Shaded}
+\end{frame}
+
+\begin{frame}[fragile]{Simple Use Case (Unit Test)}
+\protect\hypertarget{simple-use-case-unit-test}{}
+\begin{itemize}
+\tightlist
+\item
+  Simple test case that check a file has been created by the Writer
+  object
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{\textless{}?php}
+\CommentTok{// The "autorun.php" file does more than just include the SimpleTest files, it also runs our test for us}
+\KeywordTok{require\_once}\NormalTok{(}\StringTok{\textquotesingle{}simpletest/autorun.php\textquotesingle{}}\NormalTok{)}\OtherTok{;}
+\KeywordTok{require\_once}\NormalTok{(}\StringTok{\textquotesingle{}../classes/writer.php\textquotesingle{}}\NormalTok{)}\OtherTok{;}
+\CommentTok{// use extends UnitTestCase to implement simple test}
+\KeywordTok{class} \ConstantTok{F}\NormalTok{ileTestCase }\KeywordTok{extends} \ConstantTok{U}\NormalTok{nitTestCase \{}
+    \KeywordTok{function} \ConstantTok{F}\NormalTok{ileTestCase() \{}
+        \VariableTok{$this}\NormalTok{{-}\textgreater{}}\ConstantTok{U}\NormalTok{nitTestCase(}\StringTok{\textquotesingle{}File test\textquotesingle{}}\NormalTok{)}\OtherTok{;}\NormalTok{\}    }\CommentTok{// Constructor}
+    \CommentTok{//run just before each and every test method}
+    \KeywordTok{function}\NormalTok{ setUp() \{}
+        \PreprocessorTok{@}\FunctionTok{unlink}\NormalTok{(}\StringTok{\textquotesingle{}../temp/test.txt\textquotesingle{}}\NormalTok{)}\OtherTok{;}\NormalTok{\}}
+    \CommentTok{//run just before each and every test method}
+    \KeywordTok{function}\NormalTok{ tearDown() \{}
+        \PreprocessorTok{@}\FunctionTok{unlink}\NormalTok{(}\StringTok{\textquotesingle{}../temp/test.txt\textquotesingle{}}\NormalTok{)}\OtherTok{;}\NormalTok{\}}
+    \CommentTok{// When a test case runs, it will search for any method that starts with the string "test" and execute that method.}
+    \KeywordTok{function}\NormalTok{ testCreation() \{}
+        \VariableTok{$writer} \OperatorTok{=} \OperatorTok{\&}\KeywordTok{new} \ConstantTok{F}\NormalTok{ileWriter(}\StringTok{\textquotesingle{}../temp/test.txt\textquotesingle{}}\NormalTok{)}\OtherTok{;}
+        \VariableTok{$writer}\NormalTok{{-}\textgreater{}write(}\StringTok{\textquotesingle{}Hello\textquotesingle{}}\NormalTok{)}\OtherTok{;}
+        \CommentTok{// using assertTrue function validate if the test.txt is exit, if true print \textquotesingle{}File created\textquotesingle{}}
+        \VariableTok{$this}\NormalTok{{-}\textgreater{}assertTrue(}\FunctionTok{file\_exists}\NormalTok{(}\StringTok{\textquotesingle{}../temp/test.txt\textquotesingle{}}\NormalTok{)}\OtherTok{,} \StringTok{\textquotesingle{}File created\textquotesingle{}}\NormalTok{)}\OtherTok{;}
+\NormalTok{\}\}}\KeywordTok{?\textgreater{}}
+\end{Highlighting}
+\end{Shaded}
+\end{frame}
+
+\begin{frame}[fragile]{Group Test}
+\protect\hypertarget{group-test}{}
+\begin{itemize}
+\tightlist
+\item
+  Group test cases to create a test suites
+\item
+  Template of test suite, `log\_test.php' content
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+
+\KeywordTok{\textless{}?php}
+\CommentTok{// when list as abstract MyFileTestCase will not execute}
+\KeywordTok{abstract} \KeywordTok{class} \ConstantTok{M}\NormalTok{yFileTestCase }\KeywordTok{extends} \ConstantTok{U}\NormalTok{nitTestCase \{ }
+ \CommentTok{//Do sometest}
+\NormalTok{ \}}
+
+\KeywordTok{class} \ConstantTok{F}\NormalTok{ileTester }\KeywordTok{extends} \ConstantTok{M}\NormalTok{yFileTestCase \{ }
+ \CommentTok{//Do sometest}
+\NormalTok{ \}}
+
+\KeywordTok{class} \ConstantTok{S}\NormalTok{ocketTester }\KeywordTok{extends} \ConstantTok{U}\NormalTok{nitTestCase \{ }
+ \CommentTok{//Do sometest}
+\NormalTok{ \}}
+\KeywordTok{?\textgreater{}}
+\end{Highlighting}
+\end{Shaded}
+\end{frame}
+
+\begin{frame}[fragile]{Group Test (cont.)}
+\protect\hypertarget{group-test-cont.}{}
+\begin{itemize}
+\tightlist
+\item
+  Script 2: Test Suite `all-test.php'
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{\textless{}?php}
+\KeywordTok{require\_once}\NormalTok{(}\StringTok{\textquotesingle{}simpletest/autorun.php\textquotesingle{}}\NormalTok{)}\OtherTok{;}
+
+\CommentTok{// Note that allTest extends TestSuite}
+\KeywordTok{class} \ConstantTok{A}\NormalTok{llTests }\KeywordTok{extends} \ConstantTok{T}\NormalTok{estSuite \{}
+    \KeywordTok{function} \ConstantTok{A}\NormalTok{llTests() \{}
+        \VariableTok{$this}\NormalTok{{-}\textgreater{}}\ConstantTok{T}\NormalTok{estSuite(}\StringTok{\textquotesingle{}All tests\textquotesingle{}}\NormalTok{)}\OtherTok{;}
+        \VariableTok{$this}\NormalTok{{-}\textgreater{}addFile(}\StringTok{\textquotesingle{}log\_test.php\textquotesingle{}}\NormalTok{)}\OtherTok{;}
+\NormalTok{    \}}
+\NormalTok{\}}
+\KeywordTok{?\textgreater{}}
+\end{Highlighting}
+\end{Shaded}
+\end{frame}
+
+\begin{frame}{What is Mock Objects}
+\protect\hypertarget{what-is-mock-objects}{}
+\begin{itemize}
+\tightlist
+\item
+  Technique for improving the design of code within Test-Driven
+  Development
+\item
+  Simulated Object that simulate the behavior of a testable unit
+\item
+  Mock objects help isolate the component being tested from the
+  components it depends on (2)
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Use case 1 (Mock Objects)}
+\protect\hypertarget{use-case-1-mock-objects}{}
+\begin{itemize}
+\tightlist
+\item
+  Pre condition:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    We test a web app
+  \item
+    Our app make HTTP requests to an external services
+  \item
+    External services always perform as expected but what if the
+    services fail?
+  \item
+    Temporary change in the behavior of these external services can
+    cause immediate failures within our test suite.
+  \end{itemize}
+\item
+  Benefit of using Mock Objects:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    We test our app in a controlled environment
+  \item
+    Replacing actual request with a mock object (simulated object)
+  \item
+    Successfully simulate external services outage and design a response
+    (in a predicted way)
+  \end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Use Case 2 (Mock Objects)}
+\protect\hypertarget{use-case-2-mock-objects}{}
+\begin{itemize}
+\tightlist
+\item
+  Technology
+
+  \begin{itemize}
+  \tightlist
+  \item
+    PHP
+  \item
+    SimpleTest
+  \end{itemize}
+\item
+  Scenario:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Test database connection, simulate database being down without
+    creating new real broken database(s)
+  \end{itemize}
+\item
+  Step
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Create DatabaseConnection class store in script
+    `database\_connection.php':
+  \end{itemize}
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{\textless{}?php}
+\CommentTok{// database\_connection.php}
+\KeywordTok{class} \ConstantTok{D}\NormalTok{atabaseConnection \{}
+    \KeywordTok{function} \ConstantTok{D}\NormalTok{atabaseConnection() \{ }\CommentTok{// do some\}}
+    
+    \KeywordTok{function}\NormalTok{ query() \{ }\CommentTok{// do some query\}}
+    
+    \KeywordTok{function}\NormalTok{ selectQuery() \{ }\CommentTok{// do some searches\}}
+\NormalTok{\}}
+\KeywordTok{?\textgreater{}}
+\end{Highlighting}
+\end{Shaded}
+\end{frame}
+
+\begin{frame}[fragile]{Use Case 2 (Mock Objects) (cont.)}
+\protect\hypertarget{use-case-2-mock-objects-cont.}{}
+\begin{itemize}
+\tightlist
+\item
+  run the generator to create mock version of DatabaseConnection
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{\textless{}?php}
+\KeywordTok{require\_once}\NormalTok{(}\StringTok{\textquotesingle{}simpletest/unit\_tester.php\textquotesingle{}}\NormalTok{)}\OtherTok{;}
+\KeywordTok{require\_once}\NormalTok{(}\StringTok{\textquotesingle{}simpletest/mock\_objects.php\textquotesingle{}}\NormalTok{)}\OtherTok{;}    \CommentTok{//include the mock object library}
+\KeywordTok{require\_once}\NormalTok{(}\StringTok{\textquotesingle{}database\_connection.php\textquotesingle{}}\NormalTok{)}\OtherTok{;}
+
+\ConstantTok{M}\NormalTok{ock::generate(}\StringTok{\textquotesingle{}DatabaseConnection\textquotesingle{}}\NormalTok{)}\OtherTok{;}           \CommentTok{// run the generator to create a mock version of DatabaseConnection}
+\KeywordTok{?\textgreater{}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{itemize}
+\tightlist
+\item
+  This generates a clone class called MockDatabaseConnection.
+\item
+  We can now create instances of the new class within our test case
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{\textless{}?php}
+\KeywordTok{class} \ConstantTok{M}\NormalTok{yTestCase }\KeywordTok{extends} \ConstantTok{U}\NormalTok{nitTestCase \{}
+    \KeywordTok{function}\NormalTok{ testSomething() \{}
+        \VariableTok{$connection} \OperatorTok{=} \OperatorTok{\&}\KeywordTok{new} \ConstantTok{M}\NormalTok{ockDatabaseConnection()}\OtherTok{;}
+\NormalTok{    \}}
+\NormalTok{\}}
+\KeywordTok{?\textgreater{}}
+\end{Highlighting}
+\end{Shaded}
+\end{frame}
+
+\begin{frame}{Python Unit Test}
+\protect\hypertarget{python-unit-test}{}
+\begin{itemize}
+\tightlist
+\item
+  The unittest unit testing framework was originally inspired by JUnit
+  (*) and has a similar flavor as major unit testing frameworks in other
+  languages
+\item
+  It supports test automation
+\item
+  Sharing of setup and shutdown code for tests
+\item
+  Aggregation of tests into collections, and independence of the tests
+  from the reporting framework(4)
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Python Mock Object}
+\protect\hypertarget{python-mock-object}{}
+\begin{itemize}
+\tightlist
+\item
+  Python with json
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ImportTok{import}\NormalTok{ json}
+
+\CommentTok{\# a Python object (dict):}
+\NormalTok{x }\OperatorTok{=}\NormalTok{ \{  }\StringTok{"name"}\NormalTok{: }\StringTok{"John"}\NormalTok{,}\StringTok{"age"}\NormalTok{: }\DecValTok{30}\NormalTok{,}\StringTok{"city"}\NormalTok{: }\StringTok{"New York"}\NormalTok{\}}
+
+\CommentTok{\# convert into JSON:}
+\NormalTok{y }\OperatorTok{=}\NormalTok{ json.dumps(x)}
+
+\CommentTok{\# the result is a JSON string:}
+\BuiltInTok{print}\NormalTok{(y)}
+\end{Highlighting}
+\end{Shaded}
+\end{frame}
+
+\begin{frame}[fragile]{Python Mock Object (cont.)}
+\protect\hypertarget{python-mock-object-cont.}{}
+\begin{itemize}
+\tightlist
+\item
+  Using Python Mock Object of unittest package
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\OperatorTok{\textgreater{}\textgreater{}\textgreater{}}\NormalTok{ from }\ExtensionTok{unittest.mock}\NormalTok{ import Mock}
+\OperatorTok{\textgreater{}\textgreater{}\textgreater{}}\NormalTok{ import }\ExtensionTok{json}
+\OperatorTok{\textgreater{}\textgreater{}\textgreater{}}\NormalTok{ json }\ExtensionTok{=}\NormalTok{ Mock}\ErrorTok{(}\KeywordTok{)}
+\OperatorTok{\textgreater{}\textgreater{}\textgreater{}}\NormalTok{ json.dumps}\KeywordTok{()}
+\OperatorTok{\textless{}}\NormalTok{Mock }\VariableTok{name}\OperatorTok{=}\StringTok{\textquotesingle{}mock.dumps()\textquotesingle{}} \VariableTok{id}\OperatorTok{=}\StringTok{\textquotesingle{}4392249776\textquotesingle{}}\OperatorTok{\textgreater{}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{itemize}
+\tightlist
+\item
+  Unlike the real dumps(), this mocked method requires no arguments. In
+  fact, it will accept any arguments that you pass to it.
+\item
+  The return value of dumps() is also a Mock object. The capability of
+  Mock to recursively define other mocks allows for you to use mocks in
+  complex situations.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Reference}
+\protect\hypertarget{reference}{}
+\begin{itemize}
+\tightlist
+\item
+  \href{http://simpletest.sourceforge.net/en/start-testing.html}{Simple
+  Test for PHP} (1)
+\item
+  \href{https://searchsoftwarequality.techtarget.com/definition/mock-object}{mock
+  object} (2)
+\item
+  \href{https://realpython.com/python-mock-library/}{Understanding the
+  Python Mock Object Library} (3)
+\item
+  \href{https://docs.python.org/3/library/unittest.html}{Python Unit
+  test} (4)
+\item
+  \href{https://www.w3schools.com/PHP/php_intro.asp\#:~:text=What\%20is\%20PHP\%3F\%201\%20PHP\%20is\%20an\%20acronym,4\%20PHP\%20is\%20free\%20to\%20download\%20and\%20use}{PHP
+  Introduction} (5)
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Technology}
+\protect\hypertarget{technology}{}
+\begin{itemize}
+\tightlist
+\item
+  markdown file
+\item
+  using R Studio to create presentation
+\item
+  file host at
+  \href{https://github.com/jackyhuynh/complete-solutions-for-php-testing-using-simpletest}{Simple
+  Test}
+\end{itemize}
+\end{frame}
+
+\end{document}
