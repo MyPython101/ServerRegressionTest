@@ -78,6 +78,7 @@ output:
 
 - Client Side: SimpleTest Allows testing code execution on the client, such as a web browser which is focusing on PHP tasks, such as logging into a site
 - Server side: Server-side behavior can be tested by writing simple unit tests to test functionality and behavior of single components.(7)
+
 <img src='images/client-server.jpg'>
 
 ## SimpleTest classes
