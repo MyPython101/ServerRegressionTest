@@ -31,22 +31,22 @@ output:
 
 ## SimpleTest Features
 
-- Easy to use and extend
-- Automation testing (schedule scripts)
 - Completed PHP developer test solution
+- Easy to use and extend
+- Test cases are displayed without a web browser, and auto-loading 
+- Supports simplest HTML display
 - xUnit (*) style test cases
-- Support mock objects(*)
-- Built in web browser (no need for selenium)
-- Can Navigate websites, fill in form, authentication, web tester
+- Support mock objects, automation testing, fill-in form, authentication, web tester(*)
+
 - _**Retrieved from (1)**_
 
-## Download Simple Test for PHP
+## Download SimpleTest for PHP
 
 - Download from SourceForge.net
 - Download as a plugin  for [Eclipse IDE (*) ](https://sourceforge.net/projects/simpletest/files/eclipse%20plugin/) also from SourceForge.net
 - _**Retrieved from (1)**_
 
-## How to Use Simple Test for PHP
+## How to Use SimpleTest for PHP
 
 - Use as PHP script, develop along with the source code
 - Use Simple Test to develop test case, test suite (*)
@@ -74,6 +74,12 @@ output:
 - PHP files have extension ".php"
 - _**Retrieved from (5)**_
 
+## SimpleTest: Testing Client and Server Side
+
+- Client Side: SimpleTest Allows testing code execution on the client, such as a web browser which is focusing on PHP tasks, such as logging into a site
+- Server side: Server-side behavior can be tested by writing simple unit tests to test functionality and behavior of single components.(7)
+<img src='images/client-server.jpg'>
+
 ## SimpleTest classes
 
 - use _**extend**_ keyword to implement any class in SimpleTest framework
@@ -81,7 +87,6 @@ output:
   - 'simpletest/autorun.php': include for all kind of simple test
   - 'simpletest/web_tester.php': web test (GUI testing)
   - 'simpletest/mock_objects.php': generate mock object
-  
   
 - Most use class/interface:
   - extends TestSuite: test suites
@@ -295,6 +300,22 @@ print(y)
 ```
 - Unlike the real dumps(), this mocked method requires no arguments. In fact, it will accept any arguments that you pass to it.
 - The return value of dumps() is also a Mock object. The capability of Mock to recursively define other mocks allows for you to use mocks in complex situations.
+
+## Pros vs. Cons:
+- Pros:
+    - SimpleTest is very useful for unit testing
+    - SimpleTest tests every part.
+    - Easy to understand and find bugs if unit testing is done.
+    - Execution will be fast.
+    - It provides an extensive support for forms, SSL, frames, proxies, and basic authentication.
+    - It has an inbuilt web browser, which helps in testing web applications.
+    - Tests can be executed through the browser as well as the command line.
+    - SimpleTest is highly flexible as it allows result or output customization
+    - It is an open-source tool and its available at no cost in the market.
+- Cons:
+    - Mocking is complicated.
+    - Can’t say that every part of the system will work correctly.(5,6,7)
+
 
 ## Reference
 
