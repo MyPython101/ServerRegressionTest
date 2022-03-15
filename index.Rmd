@@ -6,7 +6,10 @@ output:
   slidy_presentation: default
 ---
 
+
 ## Keyword (*)
+
+Keywords using in this presentation:
 
 - JUnit: is a regression unit testing framework for Java programming languages
 - unit test: is a testing method where the smallest testable parts of a software are tested
@@ -37,7 +40,6 @@ output:
 - Supports simplest HTML display
 - xUnit (*) style test cases
 - Support mock objects, automation testing, fill-in form, authentication, web tester(*)
-
 - _**Retrieved from (1)**_
 
 ## Download SimpleTest for PHP
@@ -51,13 +53,6 @@ output:
 - Use as PHP script, develop along with the source code
 - Use Simple Test to develop test case, test suite (*)
 - _**Retrieved from (1)**_
-
-
-## What is Unit Testing
-
-- Unit Testing: Not only test if a unit (collection of statements: statements, function, block, object) is working but what happen when it is not working.
-- Usually perform by developer
-
 
 ## What is PHP
 
@@ -74,34 +69,37 @@ output:
 - PHP files have extension ".php"
 - _**Retrieved from (5)**_
 
-## SimpleTest: Testing Client and Server Side
+## What is Unit Testing
+- Unit Testing is the first level of software testing where the smallest testable parts of a software are tested. This is used to validate that each unit of the software performs as designed. 
+- Unit Testing usually perform by developer.
+- Not only test if a unit (collection of statements: statements, function, block, object) is working but what happen (to the system/ mock object use case) when it is not working.
 
-- Client Side: SimpleTest Allows testing code execution on the client, such as a web browser which is focusing on PHP tasks, such as logging into a site
-- Server side: Server-side behavior can be tested by writing simple unit tests to test functionality and behavior of single components.(7)
+## Testing Client and Server Side
+
+- Client Side: SimpleTest allows testing code to execute on the client-side such as a web browser which is focusing on PHP tasks (e.g. logging into a site)
+- Server side: Server-side behavior can be tested by writing simple unit test cases to test functionality and behavior of a single component (7)
 
 <img src='images/client-server.jpg'>
 
-## SimpleTest classes
 
-- use _**extend**_ keyword to implement any class in SimpleTest framework
+## SimpleTest classes
 - Most use package:
   - 'simpletest/autorun.php': include for all kind of simple test
-  - 'simpletest/web_tester.php': web test (GUI testing)
+  - 'simpletest/web_tester.php': include for web testers (GUI testing)
   - 'simpletest/mock_objects.php': generate mock object
   
 - Most use class/interface:
-  - extends TestSuite: test suites
-  - extends UnitTestCase: unit test case
-  - Mock : generate mock object
+  - TestSuite class: test suites
+  - UnitTestCase class: unit test case
+  - Mock class: generate mock object
 
-
-## Unit Test cases
-- The simplest type of all test case is the unit test
-- implement SimpleTest framework by extend the UnitTestCase. 
+## UnitTestCases class
+- implement SimpleTest framework (for unit testing) by extend the UnitTestCase class of SimpleTest framework. 
 - This class of test case includes standard tests for equality, references and pattern matching
+- UnitTestCases class belong to the 'simpletest/autorun.php'
 
 ## UnitTestCase Class
-Some function of UnitTestCase class, the default for SimpleTest
+Some functions of 'UnitTestCase' class:
 ```php
 assertTrue($x)	                // Fail if $x is false
 assertFalse($x)                 // Fail if $x is true
@@ -118,7 +116,7 @@ assertOutsideMargin($x, $y, $m)	// Fail if abs($x - $y) < $m is true
 ```
 
 ## Convenience Methods (UnitTestCase Class)
-- The test cases also have some convenience methods for debugging code or extending the suite...
+- The 'UnitTestCase' class also have some convenience methods for debugging code or extending the test suite...
 ```php
 setUp()	                // Runs this before each test method
 tearDown()	            // Runs this after each test method
@@ -132,16 +130,17 @@ dump($var)	            // Does a formatted print_r() for quick and dirty debuggi
 
 ## Simple Use Case (Unit Test)
 
-- Simple test case that check a file has been created by the Writer object
+- Using SimpleTest to check if a file has been created by the Writer object
 ```php
 <?php
-// The "autorun.php" file does more than just include the SimpleTest files, it also runs our test for us
+// The "autorun.php" file it also runs our test for us
 require_once('simpletest/autorun.php');
 require_once('../classes/writer.php');
-// use extends UnitTestCase to implement simple test
+
 class FileTestCase extends UnitTestCase {
+    //Constructor
     function FileTestCase() {
-        $this->UnitTestCase('File test');}    // Constructor
+        $this->UnitTestCase('File test');}    
     //run just before each and every test method
     function setUp() {
         @unlink('../temp/test.txt');}
@@ -159,8 +158,9 @@ class FileTestCase extends UnitTestCase {
 
 ## Group Test
 
-- Group test cases to create a test suites
-- Template of test suite, 'log_test.php' content
+- Group the test cases to create a test suite
+- Below is a template of a test suite
+- file name is 'log_test.php' (php script)
 ```php
 
 <?php
@@ -182,6 +182,9 @@ class SocketTester extends UnitTestCase {
 ## Group Test (cont.)
 
 - Script 2: Test Suite 'all-test.php'
+- the  'all-test.php' call in the 'log_test.php'
+- so we can schedule the 'all-test.php' for automation testing (scheduling)
+
 ```php
 <?php
 require_once('simpletest/autorun.php');
@@ -200,14 +203,14 @@ class AllTests extends TestSuite {
 
 - Technique for improving the design of code within Test-Driven Development
 - Simulated Object that simulate the behavior of a testable unit
-- Mock objects help isolate the component being tested from the components it depends on (2)
+- Mock objects help isolate the component being tested from the components that it depends on (2)
 
 ## Use case 1 (Mock Objects)
 
 - Pre condition:
   - We test a web app
-  - Our app make HTTP requests to an external services
-  - External services always perform as expected but what if the services fail?
+  - Our app make HTTP requests to an external service
+  - External service always perform as expected but what if this service fail?
   - Temporary change in the behavior of these external services can cause immediate failures within our test suite.
 - Benefit of using Mock Objects:
   - We test our app in a controlled environment
@@ -222,7 +225,7 @@ class AllTests extends TestSuite {
 - Scenario:
   - Test database connection, simulate database being down without creating new real broken database(s)
 - Step
-  - Create DatabaseConnection class store in script 'database_connection.php':
+  - Create "DatabaseConnection" class store in script 'database_connection.php':
 
 ```php
 <?php
@@ -264,6 +267,21 @@ class MyTestCase extends UnitTestCase {
 ?>
 ```
 
+## Pros vs. Cons:
+- Pros:
+    - SimpleTest is very useful for unit testing
+    - SimpleTest tests every part.
+    - Easy to understand and find bugs if unit testing is done.
+    - Execution will be fast.
+    - It provides an extensive support for forms, SSL, frames, proxies, and basic authentication.
+    - It has an inbuilt web browser, which helps in testing web applications.
+    - Tests can be executed through the browser as well as the command line.
+    - SimpleTest is highly flexible as it allows result or output customization
+    - It is an open-source tool and its available at no cost in the market.
+- Cons:
+    - Mocking is complicated.
+    - Can’t say that every part of the system will work correctly.(5,6,7)
+
 ## Python Unit Test
 
 - The unittest unit testing framework was originally inspired by JUnit (*) and has a similar flavor as major unit testing frameworks in other languages
@@ -301,22 +319,6 @@ print(y)
 ```
 - Unlike the real dumps(), this mocked method requires no arguments. In fact, it will accept any arguments that you pass to it.
 - The return value of dumps() is also a Mock object. The capability of Mock to recursively define other mocks allows for you to use mocks in complex situations.
-
-## Pros vs. Cons:
-- Pros:
-    - SimpleTest is very useful for unit testing
-    - SimpleTest tests every part.
-    - Easy to understand and find bugs if unit testing is done.
-    - Execution will be fast.
-    - It provides an extensive support for forms, SSL, frames, proxies, and basic authentication.
-    - It has an inbuilt web browser, which helps in testing web applications.
-    - Tests can be executed through the browser as well as the command line.
-    - SimpleTest is highly flexible as it allows result or output customization
-    - It is an open-source tool and its available at no cost in the market.
-- Cons:
-    - Mocking is complicated.
-    - Can’t say that every part of the system will work correctly.(5,6,7)
-
 
 ## Reference
 
