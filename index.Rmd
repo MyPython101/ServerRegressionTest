@@ -82,24 +82,25 @@ Keywords using in this presentation:
 <img src='images/client-server.jpg'>
 
 
-## SimpleTest classes
+## Popular SimpleTest package and classes
 - Most use package:
   - 'simpletest/autorun.php': include for all kind of simple test
   - 'simpletest/web_tester.php': include for web testers (GUI testing)
   - 'simpletest/mock_objects.php': generate mock object
   
 - Most use class/interface:
-  - TestSuite class: test suites
-  - UnitTestCase class: unit test case
+  - TestSuite class: generate test suites (Group test)
+  - UnitTestCase class: generate unit test case(s)
   - Mock class: generate mock object
 
 ## UnitTestCases class
-- implement SimpleTest framework (for unit testing) by extend the UnitTestCase class of SimpleTest framework. 
-- This class of test case includes standard tests for equality, references and pattern matching
-- UnitTestCases class belong to the 'simpletest/autorun.php'
+- The UnitTestCases class belong to the 'simpletest/autorun.php'
+- To implement SimpleTest framework (for unit testing), testers need to extend the UnitTestCase class of SimpleTest framework. 
+- This class includes standard tests for equality, references and pattern matching
+
 
 ## UnitTestCase Class
-Some functions of 'UnitTestCase' class:
+Most used functions of the 'UnitTestCase' class:
 ```php
 assertTrue($x)	                // Fail if $x is false
 assertFalse($x)                 // Fail if $x is true
@@ -282,7 +283,7 @@ class MyTestCase extends UnitTestCase {
     - Mocking is complicated.
     - Can’t say that every part of the system will work correctly.(5,6,7)
 
-## Python Unit Test
+## Compare to Python Unit Test
 
 - The unittest unit testing framework was originally inspired by JUnit (*) and has a similar flavor as major unit testing frameworks in other languages
 - It supports test automation 
