@@ -6,7 +6,7 @@ output:
   slidy_presentation: default
 ---
 
-## Scan QR code for accessing by phone
+## Accessing by phone
 
 <center>
 
