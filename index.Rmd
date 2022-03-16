@@ -33,11 +33,24 @@ Keywords using in this presentation:
 - Test PHP only (not Python, not anything else)
 - Completed PHP developer test solution ( unit test, automation test, GUI test, mock object, TDD (*)...)
 
+<center>
+
+<img src='images/qr-code.png' height='200px' width='200px'>
+
+</center>
+
 ## SimpleTest Pre-requirement
 
 - Understand of testing methods(in this case Unit Testing)
 - Understand of PHP web development language
 - Know how to program (design for developer and tester)
+
+<center>
+
+<img src='images/qr-code.png' height='200px' width='200px'>
+
+</center>
+
 
 ## SimpleTest Features
 
@@ -55,11 +68,23 @@ Keywords using in this presentation:
 - Download as a plugin  for [Eclipse IDE (*) ](https://sourceforge.net/projects/simpletest/files/eclipse%20plugin/) also from SourceForge.net
 - _**Retrieved from (1)**_
 
+<center>
+
+<img src='images/qr-code.png' height='200px' width='200px'>
+
+</center>
+
 ## How to Use SimpleTest for PHP
 
 - Use as PHP script, develop along with the source code
 - Use Simple Test to develop test case, test suite (*)
 - _**Retrieved from (1)**_
+
+<center>
+
+<img src='images/qr-code.png' height='200px' width='200px'>
+
+</center>
 
 ## What is PHP
 
