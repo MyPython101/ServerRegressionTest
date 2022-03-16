@@ -6,6 +6,13 @@ output:
   slidy_presentation: default
 ---
 
+## Scan QR code for accessing by phone
+
+<center>
+
+<img src='images/qr-code.png' height='300px' width='300px'>
+
+</center>
 
 ## Keyword (*)
 
