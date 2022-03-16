@@ -104,7 +104,7 @@ Keywords using in this presentation:
 ## What is Unit Testing
 - Unit Testing is the first level of software testing where the smallest testable parts of a software are tested. This is used to validate that each unit of the software performs as designed. 
 - Unit Testing usually perform by developer.
-- Not only test if a unit (collection of statements: statements, function, block, object) is working but what happen (to the system/ mock object use case) when it is not working.
+- Tester should test both the functionality of a unit and test the testing-unit as a mock object (use case below).
 
 ## Testing Client and Server Side
 
