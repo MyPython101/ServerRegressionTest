@@ -1,3 +1,0 @@
-
-Power Point link: https://jackyhuynh.github.io/completed-testing-solutions-for-php-using-simpletest/#(1)
-Github link: https://github.com/jackyhuynh/completed-testing-solutions-for-php-using-simpletest
