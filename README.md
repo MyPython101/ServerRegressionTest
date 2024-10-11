@@ -22,7 +22,7 @@
 ---
 
 ## Online Presentation
-View the [online presentation here](https://jackyhuynh.github.io/completed-testing-solutions-for-php-using-simpletest/#(1)).
+View the [online presentation here](https://jackyhuynh.github.io/ServerRegressionTest/).
 
 ## Keywords
 - **JUnit**: Regression unit testing framework for Java.
